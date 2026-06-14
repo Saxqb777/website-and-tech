@@ -2,34 +2,47 @@ import { PrismaClient } from "@prisma/client";
 
 const db = new PrismaClient();
 
+// One-time cleanup of placeholder seeds shipped before real case studies
+// arrived. Safe to remove from this file once the DB no longer contains
+// them; kept here so the next `npm install` wipes the old placeholders
+// off the public site automatically.
+const OBSOLETE_SLUGS = [
+  "midlands-logistics-routing",
+  "northkraft-quoting-portal",
+];
+
 const studies = [
   {
-    slug: "midlands-logistics-routing",
-    title: "From three spreadsheets to one routing engine.",
-    client: "Midlands Logistics Co.",
-    year: 2026,
+    slug: "sparezy-uae-auto-parts",
+    title: "We disguised the lead form as the buy button.",
+    client: "Sparezy",
+    year: 2025,
     summary:
-      "A regional carrier was rebuilding its daily run plan by hand every morning. We replaced the choreography with a routing engine that fed straight into their existing dispatch screens — no retraining, no new logins.",
-    outcomeKey: "4.6h",
-    outcomeUnit: "saved per morning",
-    tags: "ops,logistics,routing,internal-tool",
+      "Sparezy needed every visitor to become a WhatsApp conversation, not an unanswered form. We built a single-page site that reads like a clean product page — customers configure their parts list against their VIN and 'check out' for AED 0.00 — and the order quietly drops a fully-formatted lead into the shop's WhatsApp the moment it's placed. Paired with a real-time kanban admin so sourcing, quoting, and closing all run from one screen.",
+    outcomeKey: "1-tap",
+    outcomeUnit: "order → WhatsApp lead",
+    tags: "auto-parts, lead-capture, whatsapp, kanban-admin, single-page",
     order: 1,
   },
   {
-    slug: "northkraft-quoting-portal",
-    title: "Killing the quote bottleneck inside a 40-year-old contractor.",
-    client: "Northkraft Industrial",
+    slug: "doc-ledger-ai-expense-platform",
+    title: "We taught the ledger to read its own receipts.",
+    client: "Doc Ledger",
     year: 2025,
     summary:
-      "Quotes lived inside one person's inbox. We built a structured intake + pricing layer that pushes drafts to the team in minutes instead of days — and a customer-facing portal on top of the same data.",
-    outcomeKey: "12×",
-    outcomeUnit: "faster quote turnaround",
-    tags: "b2b,portal,workflow,internal+external",
+      "Doc Ledger replaces the spreadsheet-and-shoebox half of expense management. Staff snap a receipt or upload a PDF and a Claude-powered vision pipeline extracts vendor, amount, date, and the expense-specific fields straight into a multi-tenant ledger — with multi-currency, isolated org branding, branded Excel exports, and a superadmin console sitting above every tenant.",
+    outcomeKey: "1 photo",
+    outcomeUnit: "receipt → ledger row",
+    tags: "saas, multi-tenant, ai-extraction, claude, finance-ops",
     order: 2,
   },
 ];
 
 async function main() {
+  const removed = await db.caseStudy.deleteMany({
+    where: { slug: { in: OBSOLETE_SLUGS } },
+  });
+
   for (const s of studies) {
     await db.caseStudy.upsert({
       where: { slug: s.slug },
@@ -37,7 +50,10 @@ async function main() {
       create: s,
     });
   }
-  console.log(`[seed] upserted ${studies.length} case studies`);
+
+  console.log(
+    `[seed] upserted ${studies.length} case studies, removed ${removed.count} obsolete`,
+  );
 }
 
 main()

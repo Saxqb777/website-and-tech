@@ -5,8 +5,8 @@ type Props = {
   index: string;
   /** Mono code label */
   code: string;
-  /** Right-hand status string (mono) */
-  status?: string;
+  /** Right-hand status (string or rich node) */
+  status?: ReactNode;
   children?: ReactNode;
 };
 

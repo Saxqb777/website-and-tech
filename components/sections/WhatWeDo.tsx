@@ -82,10 +82,13 @@ export function WhatWeDo() {
 
   return (
     <>
-      {/* Desktop: pinned section with horizontal scroll across 3 panels */}
+      {/* Wider screens: pinned section with horizontal scroll across 3 panels.
+          Breakpoint is sm (640px) not md, so Safari split-view tabs and
+          smaller laptop windows still get the cinematic version — only
+          true phones (< 640px) fall back to the stacked layout below. */}
       <section
         ref={wrap}
-        className="relative bg-ink hidden md:block"
+        className="relative bg-ink hidden sm:block"
         style={{ height: "360vh" }}
       >
         <div className="sticky top-0 h-screen overflow-hidden">
@@ -118,8 +121,8 @@ export function WhatWeDo() {
         </div>
       </section>
 
-      {/* Mobile: same three stages, stacked vertically — no pinning */}
-      <section className="relative bg-ink block md:hidden">
+      {/* True phones only (< 640px): same three stages stacked, no pinning */}
+      <section className="relative bg-ink block sm:hidden">
         <div className="px-6 pt-20">
           <SectionHeader index="01" code="WHAT.WE.DO" status="3 stages">
             Find · Build · Compound
@@ -179,10 +182,10 @@ export function WhatWeDo() {
 
 function StagePanel({ stage }: { stage: Stage }) {
   return (
-    <div className="relative h-full w-screen shrink-0 px-8 md:px-16 flex items-center">
+    <div className="relative h-full w-screen shrink-0 px-6 sm:px-10 md:px-16 flex items-center">
       <div className="grid grid-cols-12 gap-8 w-full">
         {/* Left: schematic side panel */}
-        <div className="col-span-12 md:col-span-3 self-start">
+        <div className="col-span-12 sm:col-span-3 self-start">
           <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted mb-3">
             STAGE · {stage.index}
           </p>
@@ -203,7 +206,7 @@ function StagePanel({ stage }: { stage: Stage }) {
         </div>
 
         {/* Right: the headline + body + metric */}
-        <div className="col-span-12 md:col-span-9">
+        <div className="col-span-12 sm:col-span-9">
           <h3 className="font-display text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em] text-paper max-w-[18ch]">
             {stage.headline}{" "}
             {stage.italic ? (

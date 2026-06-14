@@ -119,16 +119,16 @@ export const heroFragmentShader = /* glsl */ `
 
     // Each cell has a unique lifecycle phase. Some cells never wake up
     // (those with cH above uModuleRate).
-    float active   = step(1.0 - uModuleRate, cH);
-    float phase    = cH * 10.0 + t * uModuleSpeed;
-    float window   = fract(phase);
+    float alive   = step(1.0 - uModuleRate, cH);
+    float phase   = cH * 10.0 + t * uModuleSpeed;
+    float cycle   = fract(phase);
     // ramp up, hold, ramp down — soft trapezoidal envelope
-    float life     = smoothstep(0.0, 0.18, window)
-                   * (1.0 - smoothstep(0.55, 0.85, window));
-    float intensity = active * life;
+    float life     = smoothstep(0.0, 0.18, cycle)
+                   * (1.0 - smoothstep(0.55, 0.85, cycle));
+    float intensity = alive * life;
 
     // Cursor "constructs faster" — boost lifecycle locally
-    intensity = min(1.0, intensity + active * mInfluence * 0.5);
+    intensity = min(1.0, intensity + alive * mInfluence * 0.5);
 
     // Inside-cell coords (-0.5..0.5)
     vec2 cuv  = fract(g) - 0.5;

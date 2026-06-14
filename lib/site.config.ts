@@ -7,7 +7,7 @@ export const siteConfig = {
   brand: BRAND,
   tagline: "The machinery underneath.",
   description:
-    "A studio that finds the operational pain inside a business and builds the software that removes it.",
+    "A software studio for the operational guts of a business. Find the bottleneck. Build the machinery. Ship it in ten days.",
   url: "https://oblique.studio",
 
   // 90% near-black + paper, 10% one electric accent. Used as a scalpel.

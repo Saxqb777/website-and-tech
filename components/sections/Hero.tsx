@@ -78,20 +78,27 @@ export function Hero() {
 
           <KineticHeadline
             words={[
-              { text: "We" },
-              { text: "build" },
-              { text: "the" },
-              { text: "things" },
-              { text: "no" },
-              { text: "one" },
-              { text: "sees", italic: true, accentDot: true },
+              { text: "Your" },
+              { text: "bottleneck" },
+              { text: "isn't" },
+              { text: "your" },
+              { text: "website", accentDot: true },
             ]}
           />
 
           <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="mt-6 font-display italic text-2xl sm:text-3xl md:text-4xl text-paper leading-[1.15] tracking-[-0.02em] max-w-3xl"
+          >
+            It&rsquo;s the workflow underneath it.
+          </motion.p>
+
+          <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.05 }}
+            transition={{ duration: 0.8, delay: 1.1 }}
             className="mt-8 sm:mt-12 max-w-xl font-display text-lg sm:text-xl prose-body leading-relaxed"
           >
             {siteConfig.description}

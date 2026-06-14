@@ -5,24 +5,24 @@ const PILLARS = [
   {
     code: "P–01",
     title: "Workflows, not pages.",
-    body: "Most studios sell pages. We sell the system that makes the pages unnecessary, or the one that makes them work. Either way, the website is downstream of the workflow.",
+    body: "Most studios sell pages. We sell the system that makes the pages work — or the one that makes them unnecessary. Either way, the website is downstream of the workflow.",
   },
   {
     code: "P–02",
-    title: "Ten-day cycles, real software.",
-    body: "Every ten days you get a working slice in the hands of real users — not a deck. Direction corrects against reality, not against the slide before it.",
+    title: "Ten days, real software.",
+    body: "Every ten days, a working slice in real hands. Not a deck. Not a Figma frame. Direction corrects against reality, not against last week's slide.",
   },
   {
     code: "P–03",
     title: "You keep the source.",
-    body: "Code, infrastructure, accounts — yours from day one. We're a co-pilot you can fire. The point isn't to lock you in, it's to leave you machinery you own.",
+    body: "Code, infrastructure, accounts — yours from day one. We're a co-pilot you can fire. The point isn't to lock you in; it's to leave you machinery you own.",
   },
 ];
 
 export function Approach() {
   return (
     <section className="relative bg-ink">
-      <div className="px-8 pt-24">
+      <div className="px-5 sm:px-8 pt-16 sm:pt-24">
         <SectionHeader index="03" code="APPROACH" status="Three pillars">
           How we build — and why it doesn&rsquo;t look like an agency
         </SectionHeader>

@@ -3,15 +3,14 @@ import { siteConfig } from "@/lib/site.config";
 import { Magnetic } from "@/components/motion/Magnetic";
 
 /**
- * Footer shell. The brand wordmark is treated as a design moment —
- * full-bleed, oversized, with the accent dot doing the talking.
- * Polished further in Phase 5.
+ * Minimal footer: tagline + nav + year + small wordmark. The oversized
+ * wordmark moment was removed at the user's request.
  */
 export function Footer() {
   return (
     <footer className="relative border-t border-rule">
-      <div className="px-8 pt-24 pb-8">
-        <div className="flex flex-col gap-16 md:flex-row md:items-end md:justify-between">
+      <div className="px-8 pt-16 pb-10">
+        <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted mb-6">
               // {siteConfig.tagline}
@@ -32,7 +31,7 @@ export function Footer() {
           </div>
 
           <div className="text-right">
-            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
+            <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted mb-3">
               {new Date().getFullYear()} —{" "}
               <Link
                 href="/contact"
@@ -42,17 +41,12 @@ export function Footer() {
                 Start a conversation
               </Link>
             </p>
+            <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper">
+              {siteConfig.brand}
+              <span className="text-accent">.</span>
+            </p>
           </div>
         </div>
-
-        {/* Oversized wordmark as a design moment. */}
-        <h2
-          aria-hidden
-          className="font-display italic text-paper mt-24 leading-none tracking-[-0.04em] text-[clamp(5rem,22vw,22rem)] select-none"
-        >
-          {siteConfig.brand}
-          <span className="not-italic text-accent">.</span>
-        </h2>
       </div>
     </footer>
   );

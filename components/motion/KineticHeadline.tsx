@@ -16,7 +16,7 @@ const baseTransition = {
 
 export function KineticHeadline({ words }: { words: Word[] }) {
   return (
-    <h1 className="font-display text-[clamp(2.5rem,11.5vw,12rem)] leading-[0.88] tracking-[-0.035em] text-paper">
+    <h1 className="font-display text-[clamp(2.25rem,7.5vw,7rem)] leading-[0.9] tracking-[-0.035em] text-paper">
       <span className="flex flex-wrap gap-x-[0.22em] gap-y-[0.05em]">
         {words.map((w, i) => (
           <WordMask key={i} delay={0.15 + i * 0.09}>

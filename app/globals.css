@@ -61,6 +61,31 @@ body {
   color: var(--ink);
 }
 
+/* Keyboard focus rings — only visible to keyboard users, never to mouse */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+/* Inputs already carry a bottom rule — show focus by colouring it */
+input:focus-visible,
+textarea:focus-visible {
+  outline: none;
+  box-shadow: inset 0 -1px 0 0 var(--accent);
+}
+/* sr-only utility (kept locally so it works without external dependencies) */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
 /* Custom cursor takes over: hide the OS cursor on fine-pointer devices */
 html.cursor-none,
 html.cursor-none * {

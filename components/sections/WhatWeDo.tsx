@@ -69,40 +69,111 @@ export function WhatWeDo() {
     target: wrap,
     offset: ["start start", "end end"],
   });
-  // 3 panels => translate from 0% to -200% (i.e. 2 panel widths)
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-66.6666%"]);
+  // 3 panels => translate from 0% to -200% (i.e. 2 panel widths).
+  // We finish the translate at 88% of the scroll, then hold flat to 100%
+  // so the user actually sees the third panel sitting still before the
+  // section unpins (previously they hit the same instant and the third
+  // panel got clipped at the right).
+  const x = useTransform(
+    scrollYProgress,
+    [0, 0.88, 1],
+    ["0%", "-66.6666%", "-66.6666%"],
+  );
 
   return (
-    <section ref={wrap} className="relative bg-ink" style={{ height: "320vh" }}>
-      <div className="sticky top-0 h-screen overflow-hidden">
-        <div className="px-8 pt-24 pb-4">
+    <>
+      {/* Desktop: pinned section with horizontal scroll across 3 panels */}
+      <section
+        ref={wrap}
+        className="relative bg-ink hidden md:block"
+        style={{ height: "360vh" }}
+      >
+        <div className="sticky top-0 h-screen overflow-hidden">
+          <div className="px-8 pt-24 pb-4">
+            <SectionHeader index="01" code="WHAT.WE.DO" status="3 stages">
+              Horizontal scroll · scroll to advance
+            </SectionHeader>
+          </div>
+
+          <motion.div
+            style={{ x }}
+            className="flex h-[calc(100vh-7.5rem)] will-change-transform"
+          >
+            {STAGES.map((s) => (
+              <StagePanel key={s.index} stage={s} />
+            ))}
+          </motion.div>
+
+          {/* HUD bar */}
+          <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
+            <span>
+              <span className="text-paper">Find</span>
+              <span className="mx-3 text-paper-muted">→</span>
+              <span className="text-paper">Build</span>
+              <span className="mx-3 text-paper-muted">→</span>
+              <span className="text-paper">Compound</span>
+            </span>
+            <ProgressIndicator progress={scrollYProgress} />
+          </div>
+        </div>
+      </section>
+
+      {/* Mobile: same three stages, stacked vertically — no pinning */}
+      <section className="relative bg-ink block md:hidden">
+        <div className="px-6 pt-20">
           <SectionHeader index="01" code="WHAT.WE.DO" status="3 stages">
-            Horizontal scroll · scroll to advance
+            Find · Build · Compound
           </SectionHeader>
         </div>
-
-        <motion.div
-          style={{ x }}
-          className="flex h-[calc(100vh-7.5rem)] will-change-transform"
-        >
+        <div className="px-6 py-16 space-y-24">
           {STAGES.map((s) => (
-            <StagePanel key={s.index} stage={s} />
+            <article
+              key={s.index}
+              className="border-t border-dashed border-rule pt-10"
+            >
+              <div className="flex items-center justify-between">
+                <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
+                  STAGE · {s.index}
+                </p>
+                <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-accent">
+                  {s.eyebrow}
+                </p>
+              </div>
+              <h3 className="mt-6 font-display text-[clamp(2.2rem,9vw,3.5rem)] leading-[0.95] tracking-[-0.03em] text-paper">
+                {s.headline}{" "}
+                {s.italic ? (
+                  <span className="italic text-paper">{s.italic}</span>
+                ) : null}
+              </h3>
+              <p className="mt-6 font-display text-base prose-body leading-relaxed">
+                {s.body}
+              </p>
+              <div className="mt-8 flex items-end gap-8 border-t border-dashed border-rule pt-5">
+                <div>
+                  <div className="font-display text-4xl text-accent leading-none">
+                    {s.metric}
+                  </div>
+                  <div className="mt-2 font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
+                    {s.metricLabel}
+                  </div>
+                </div>
+              </div>
+              <ul className="mt-8 space-y-1.5">
+                {s.schematic.map((row) => (
+                  <li
+                    key={row}
+                    className="font-mono text-[10px] tracking-[0.2em] uppercase text-paper-muted"
+                  >
+                    <span className="mr-3 text-paper-muted">●</span>
+                    {row}
+                  </li>
+                ))}
+              </ul>
+            </article>
           ))}
-        </motion.div>
-
-        {/* HUD bar */}
-        <div className="absolute bottom-6 left-8 right-8 flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
-          <span>
-            <span className="text-paper">Find</span>
-            <span className="mx-3 text-paper-muted">→</span>
-            <span className="text-paper">Build</span>
-            <span className="mx-3 text-paper-muted">→</span>
-            <span className="text-paper">Compound</span>
-          </span>
-          <ProgressIndicator progress={scrollYProgress} />
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }
 

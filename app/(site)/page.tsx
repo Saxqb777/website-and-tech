@@ -1,51 +1,15 @@
 import { siteConfig } from "@/lib/site.config";
 import { MagneticButton } from "@/components/ui/MagneticButton";
+import { Hero } from "@/components/sections/Hero";
 
 /**
- * Phase 1 home: long enough to feel the smooth scroll.
- * Real story sections + WebGL hero land in Phases 2 & 3.
+ * Phase 2 home: WebGL hero on top, placeholder story chapters below.
+ * Real story sections land in Phase 3.
  */
 export default function Home() {
   return (
     <>
-      {/* HERO PLACEHOLDER — WebGL canvas drops in here in Phase 2 */}
-      <section className="relative min-h-screen px-8 pt-40 pb-24 flex flex-col justify-between">
-        <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted">
-          // {String(new Date().getFullYear())} · A studio, not an agency
-        </p>
-
-        <div className="max-w-6xl">
-          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted mb-8">
-            // hello
-          </p>
-          <h1 className="font-display text-[clamp(3.5rem,11vw,11rem)] leading-[0.9] tracking-[-0.035em] text-paper">
-            The machinery{" "}
-            <span className="italic">
-              underneath<span className="not-italic text-accent">.</span>
-            </span>
-          </h1>
-          <p className="mt-12 max-w-xl font-display text-xl text-paper-muted leading-relaxed">
-            {siteConfig.description}
-          </p>
-          <div className="mt-12 flex flex-wrap gap-3">
-            <MagneticButton href={siteConfig.cta.primary.href}>
-              {siteConfig.cta.primary.label}
-            </MagneticButton>
-            <MagneticButton href="/work" variant="ghost">
-              See the work
-            </MagneticButton>
-          </div>
-        </div>
-
-        <div className="flex items-end justify-between">
-          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted">
-            ↓ Scroll
-          </p>
-          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted">
-            Phase 1 — Smooth scroll · Cursor · Magnetic
-          </p>
-        </div>
-      </section>
+      <Hero />
 
       {/* CHAPTER 1 — what we do (placeholder block to feel the scroll) */}
       <section className="relative px-8 py-40 border-t border-rule">

@@ -205,9 +205,11 @@ function StagePanel({ stage }: { stage: Stage }) {
           </ul>
         </div>
 
-        {/* Right: the headline + body + metric */}
-        <div className="col-span-12 sm:col-span-9">
-          <h3 className="font-display text-[clamp(2.8rem,6.5vw,6.5rem)] leading-[0.95] tracking-[-0.03em] text-paper max-w-[18ch]">
+        {/* Right: the headline + body + metric. pr-* keeps content
+            inset from the panel's right edge so mid-transition slides
+            never visibly clip the headline at the viewport edge. */}
+        <div className="col-span-12 sm:col-span-9 pr-4 sm:pr-12 md:pr-24">
+          <h3 className="font-display text-[clamp(2.4rem,5.5vw,5.5rem)] leading-[0.95] tracking-[-0.03em] text-paper max-w-[14ch]">
             {stage.headline}{" "}
             {stage.italic ? (
               <span className="italic text-paper">

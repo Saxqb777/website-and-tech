@@ -30,10 +30,10 @@ const studies = [
     client: "Doc Ledger",
     year: 2025,
     summary:
-      "Doc Ledger replaces the spreadsheet-and-shoebox half of expense management. Staff snap a receipt or upload a PDF and a Claude-powered vision pipeline extracts vendor, amount, date, and the expense-specific fields straight into a multi-tenant ledger — with multi-currency, isolated org branding, branded Excel exports, and a superadmin console sitting above every tenant.",
+      "Doc Ledger replaces the spreadsheet-and-shoebox half of expense management. Staff snap a receipt or upload a PDF and a vision-AI pipeline extracts vendor, amount, date, and the expense-specific fields straight into a multi-tenant ledger — with multi-currency, isolated org branding, branded Excel exports, and a superadmin console sitting above every tenant.",
     outcomeKey: "1 photo",
     outcomeUnit: "receipt → ledger row",
-    tags: "saas, multi-tenant, ai-extraction, claude, finance-ops",
+    tags: "saas, multi-tenant, ai-extraction, vision-ai, finance-ops",
     order: 2,
   },
 ];

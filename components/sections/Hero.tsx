@@ -46,10 +46,11 @@ export function Hero() {
         {renderShader ? <HeroCanvas /> : <HeroFallback />}
       </div>
 
-      {/* Subtle fade at the bottom into the page below */}
+      {/* Bottom fade — pulls the lower 55% of the hero down into solid
+          ink so headline body copy + CTAs sit on a readable ground. */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-ink"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[55vh] bg-gradient-to-b from-transparent via-ink/70 to-ink"
       />
 
       {/* Content layer */}
@@ -139,7 +140,7 @@ export function Hero() {
             </motion.span>
           </motion.div>
           <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted">
-            Phase 2 — WebGL hero
+            4 sections · one page · {new Date().getFullYear()}
           </p>
         </div>
       </div>

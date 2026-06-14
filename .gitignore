@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# prisma sqlite
+/prisma/*.db
+/prisma/*.db-journal
+.env
+
+# allow .env.example (no secrets) so postinstall can bootstrap dev .env
+!.env.example

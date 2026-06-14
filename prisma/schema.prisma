@@ -1,0 +1,38 @@
+// Prisma schema — SQLite for local dev. Swap `provider` to `postgresql`
+// and update DATABASE_URL when ready for production.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// Editable in /admin (Phase 4). Public list rendered on /work and on home.
+model CaseStudy {
+  id          String   @id @default(cuid())
+  slug        String   @unique
+  title       String
+  client      String
+  year        Int
+  summary     String
+  outcomeKey  String   // e.g. "5x"
+  outcomeUnit String   // e.g. "throughput"
+  tags        String   // comma-separated
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+// Lead submissions from /contact (wiring lands in Phase 4).
+model Lead {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  company   String?
+  message   String
+  createdAt DateTime @default(now())
+}

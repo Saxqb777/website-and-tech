@@ -30,7 +30,7 @@ export default async function CaseStudyPage({ params }: Props) {
 
   return (
     <article className="relative bg-ink">
-      <div className="px-8 pt-40">
+      <div className="px-5 sm:px-8 pt-28 sm:pt-40">
         <SectionHeader
           index={`CS · ${s.year}`}
           code={s.client.toUpperCase().replace(/\s+/g, ".")}
@@ -40,13 +40,13 @@ export default async function CaseStudyPage({ params }: Props) {
         </SectionHeader>
       </div>
 
-      <div className="px-8 pt-16 pb-24">
-        <div className="grid grid-cols-12 gap-8">
+      <div className="px-5 sm:px-8 pt-10 sm:pt-16 pb-16 sm:pb-24">
+        <div className="grid grid-cols-12 gap-6 sm:gap-8">
           <div className="col-span-12 md:col-span-9">
             <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted mb-6">
               // {s.client} · {s.year}
             </p>
-            <h1 className="font-display text-[clamp(2.5rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.03em] text-paper">
+            <h1 className="font-display text-[clamp(2rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.03em] text-paper">
               {s.title}
             </h1>
             <p className="mt-10 max-w-2xl font-display text-xl prose-body leading-relaxed">

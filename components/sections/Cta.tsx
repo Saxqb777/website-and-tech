@@ -7,13 +7,13 @@ import { HudClock } from "@/components/ui/HudClock";
 export function Cta() {
   return (
     <section className="relative bg-ink">
-      <div className="px-8 pt-24">
+      <div className="px-5 sm:px-8 pt-16 sm:pt-24">
         <SectionHeader index="04" code="CONTACT" status="Inbox · open">
           One question we&rsquo;ll always ask first
         </SectionHeader>
       </div>
 
-      <div className="relative px-8 pt-32 pb-40">
+      <div className="relative px-5 sm:px-8 pt-20 sm:pt-32 pb-24 sm:pb-40">
         {/* Schematic crosshair backdrop */}
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <div className="absolute left-1/2 top-0 h-full w-px bg-rule" />
@@ -28,7 +28,7 @@ export function Cta() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.05}>
-            <h2 className="font-display text-[clamp(3rem,10vw,10rem)] leading-[0.88] tracking-[-0.035em] text-paper">
+            <h2 className="font-display text-[clamp(2.25rem,10vw,10rem)] leading-[0.88] tracking-[-0.035em] text-paper">
               Tell us where it{" "}
               <span className="italic">
                 hurts<span className="not-italic text-accent">.</span>
@@ -37,7 +37,7 @@ export function Cta() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.15}>
-            <p className="mt-10 max-w-xl font-display text-lg prose-body leading-relaxed">
+            <p className="mt-8 sm:mt-10 max-w-xl font-display text-base sm:text-lg prose-body leading-relaxed">
               Twenty minutes, free, no deck. You describe what&rsquo;s slow,
               what&rsquo;s broken, what&rsquo;s held together with tape. We
               tell you whether software is the right answer — and if so, what
@@ -46,7 +46,7 @@ export function Cta() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.22}>
-            <div className="mt-14 flex flex-wrap items-center gap-8">
+            <div className="mt-10 sm:mt-14 flex flex-wrap items-center gap-6 sm:gap-8">
               <MagneticButton href={siteConfig.cta.primary.href}>
                 {siteConfig.cta.primary.label}
               </MagneticButton>

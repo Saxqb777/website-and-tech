@@ -9,7 +9,7 @@ import { Magnetic } from "@/components/motion/Magnetic";
 export function Footer() {
   return (
     <footer className="relative border-t border-rule">
-      <div className="px-8 pt-16 pb-10">
+      <div className="px-5 sm:px-8 pt-12 sm:pt-16 pb-8 sm:pb-10">
         <div className="flex flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div>
             <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted mb-6">

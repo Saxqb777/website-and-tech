@@ -28,9 +28,9 @@ export function Approach() {
         </SectionHeader>
       </div>
 
-      <div className="px-8 py-24">
+      <div className="px-5 sm:px-8 py-16 sm:py-24">
         <RevealOnScroll>
-          <h2 className="max-w-5xl font-display text-[clamp(2.5rem,6.5vw,6rem)] leading-[0.95] tracking-[-0.03em] text-paper">
+          <h2 className="max-w-5xl font-display text-[clamp(2rem,6.5vw,6rem)] leading-[0.95] tracking-[-0.03em] text-paper">
             We&rsquo;re an engineering studio that{" "}
             <span className="italic">talks to the business,</span> not a
             marketing studio that{" "}
@@ -39,7 +39,7 @@ export function Approach() {
           </h2>
         </RevealOnScroll>
 
-        <div className="mt-20 grid grid-cols-12 gap-6">
+        <div className="mt-14 sm:mt-20 grid grid-cols-12 gap-8 sm:gap-6">
           {PILLARS.map((p, i) => (
             <RevealOnScroll
               key={p.code}

@@ -84,7 +84,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={onSubmit} className="relative">
-      <div className="grid grid-cols-12 gap-8">
+      <div className="grid grid-cols-12 gap-6 sm:gap-8">
         {FIELDS.map((f) => (
           <div
             key={f.key}
@@ -165,7 +165,7 @@ function FieldRow({
             onChange={(e) => onChange(e.target.value)}
             placeholder={field.hint}
             rows={4}
-            className="w-full bg-transparent font-display text-2xl md:text-3xl leading-[1.25] text-paper placeholder:text-paper-muted/60 placeholder:font-display focus:outline-none resize-none py-3"
+            className="w-full bg-transparent font-display text-xl sm:text-2xl md:text-3xl leading-[1.25] text-paper placeholder:text-paper-muted/60 placeholder:font-display focus:outline-none resize-none py-3"
           />
         ) : (
           <input
@@ -175,7 +175,7 @@ function FieldRow({
             value={value}
             onChange={(e) => onChange(e.target.value)}
             placeholder={field.hint}
-            className="w-full bg-transparent font-display text-3xl md:text-4xl text-paper placeholder:text-paper-muted/60 placeholder:font-display focus:outline-none py-3"
+            className="w-full bg-transparent font-display text-2xl sm:text-3xl md:text-4xl text-paper placeholder:text-paper-muted/60 placeholder:font-display focus:outline-none py-3"
           />
         )}
         {error ? (

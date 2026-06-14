@@ -27,14 +27,14 @@ export function Nav() {
         backdropFilter: condensed ? "blur(12px)" : "blur(0px)",
       }}
       transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-x-0 top-0 z-50 px-8"
+      className="fixed inset-x-0 top-0 z-50 px-5 sm:px-8"
     >
       <div className="flex items-center justify-between">
         <Magnetic strength={0.4}>
           <Wordmark />
         </Magnetic>
 
-        <nav className="flex items-center gap-2">
+        <nav className="flex items-center gap-0 sm:gap-2">
           {siteConfig.nav.map((item) => {
             const active = pathname === item.href;
             return (
@@ -42,7 +42,7 @@ export function Nav() {
                 <Link
                   href={item.href}
                   data-cursor="hover"
-                  className="group relative px-3 py-2 font-mono text-[11px] tracking-[0.22em] uppercase text-paper/80 hover:text-paper transition-colors"
+                  className="group relative px-2 sm:px-3 py-2 font-mono text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.22em] uppercase text-paper/80 hover:text-paper transition-colors"
                 >
                   <span className="relative">
                     {item.label}

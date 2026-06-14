@@ -20,7 +20,7 @@ export async function Proof() {
         </SectionHeader>
       </div>
 
-      <div className="px-8 py-24">
+      <div className="px-5 sm:px-8 py-16 sm:py-24">
         <div className="grid grid-cols-12 gap-6">
           {studies.map((s, i) => {
             const tags = s.tags.split(",").map((t) => t.trim()).filter(Boolean);
@@ -44,7 +44,7 @@ export async function Proof() {
                   className="relative block border border-rule hover:border-paper transition-colors duration-500"
                 >
                   <CornerBrackets />
-                  <div className="p-8 md:p-10">
+                  <div className="p-5 sm:p-8 md:p-10">
                     <div className="flex items-center justify-between font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
                       <span>
                         CS_{String(i + 1).padStart(2, "0")} / {s.year}
@@ -60,16 +60,16 @@ export async function Proof() {
                       {s.summary}
                     </p>
 
-                    <div className="mt-10 flex items-end justify-between gap-8 border-t border-dashed border-rule pt-6">
+                    <div className="mt-8 sm:mt-10 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6 sm:gap-8 border-t border-dashed border-rule pt-6">
                       <div>
-                        <div className="font-display text-4xl text-accent leading-none">
+                        <div className="font-display text-3xl sm:text-4xl text-accent leading-none">
                           {s.outcomeKey}
                         </div>
                         <div className="mt-2 font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
                           {s.outcomeUnit}
                         </div>
                       </div>
-                      <div className="flex flex-wrap justify-end gap-2 max-w-[60%]">
+                      <div className="flex flex-wrap sm:justify-end gap-2 sm:max-w-[60%]">
                         {tags.map((t) => (
                           <span
                             key={t}

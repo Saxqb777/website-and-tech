@@ -32,11 +32,13 @@ export function Hero() {
   const [renderShader, setRenderShader] = useState(false);
 
   useEffect(() => {
-    const wide = window.matchMedia("(min-width: 768px)").matches;
+    // Shader runs on every device that can handle WebGL and isn't
+    // explicitly asking for reduced motion. Mobile DPR is capped
+    // inside HeroCanvas so performance stays sane on phones.
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    setRenderShader(wide && !reduce && detectWebGL());
+    setRenderShader(!reduce && detectWebGL());
   }, []);
 
   return (
@@ -54,7 +56,7 @@ export function Hero() {
       />
 
       {/* Content layer */}
-      <div className="relative z-10 flex min-h-screen flex-col px-8 pt-40 pb-12">
+      <div className="relative z-10 flex min-h-screen flex-col px-5 sm:px-8 pt-28 sm:pt-40 pb-10 sm:pb-12">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
@@ -90,7 +92,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.05 }}
-            className="mt-12 max-w-xl font-display text-xl prose-body leading-relaxed"
+            className="mt-8 sm:mt-12 max-w-xl font-display text-lg sm:text-xl prose-body leading-relaxed"
           >
             {siteConfig.description}
           </motion.p>
@@ -99,7 +101,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.2 }}
-            className="mt-12 flex flex-wrap gap-3"
+            className="mt-8 sm:mt-12 flex flex-wrap gap-3"
           >
             <MagneticButton href={siteConfig.cta.primary.href}>
               {siteConfig.cta.primary.label}
@@ -111,7 +113,7 @@ export function Hero() {
         </div>
 
         {/* Bottom HUD: scroll affordance + phase label */}
-        <div className="mt-16 flex items-end justify-between">
+        <div className="mt-12 sm:mt-16 flex items-end justify-between gap-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -139,7 +141,7 @@ export function Hero() {
               ↓
             </motion.span>
           </motion.div>
-          <p className="font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted">
+          <p className="hidden sm:block font-mono text-[11px] tracking-[0.22em] uppercase text-paper-muted text-right">
             4 sections · one page · {new Date().getFullYear()}
           </p>
         </div>

@@ -123,12 +123,12 @@ export function WhatWeDo() {
 
       {/* True phones only (< 640px): same three stages stacked, no pinning */}
       <section className="relative bg-ink block sm:hidden">
-        <div className="px-6 pt-20">
+        <div className="px-5 pt-14">
           <SectionHeader index="01" code="WHAT.WE.DO" status="3 stages">
             Find · Build · Compound
           </SectionHeader>
         </div>
-        <div className="px-6 py-16 space-y-24">
+        <div className="px-5 py-12 space-y-16">
           {STAGES.map((s) => (
             <article
               key={s.index}

@@ -17,7 +17,7 @@ export default async function WorkPage() {
 
   return (
     <section className="relative min-h-screen bg-ink">
-      <div className="px-8 pt-40">
+      <div className="px-5 sm:px-8 pt-28 sm:pt-40">
         <SectionHeader
           index="00"
           code="WORK.INDEX"
@@ -27,15 +27,15 @@ export default async function WorkPage() {
         </SectionHeader>
       </div>
 
-      <div className="px-8 pt-16 pb-24">
-        <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-[-0.035em] text-paper max-w-5xl">
+      <div className="px-5 sm:px-8 pt-12 sm:pt-16 pb-16 sm:pb-24">
+        <h1 className="font-display text-[clamp(2.25rem,9vw,8rem)] leading-[0.9] tracking-[-0.035em] text-paper max-w-5xl">
           The machinery, in{" "}
           <span className="italic">
             evidence<span className="not-italic text-accent">.</span>
           </span>
         </h1>
 
-        <ul className="mt-24 divide-y divide-rule border-y border-rule">
+        <ul className="mt-16 sm:mt-24 divide-y divide-rule border-y border-rule">
           {studies.map((s, i) => {
             const tags = s.tags
               .split(",")
@@ -46,16 +46,16 @@ export default async function WorkPage() {
                 <Link
                   href={`/work/${s.slug}`}
                   data-cursor="hover"
-                  className="grid grid-cols-12 gap-6 items-baseline py-10 transition-colors hover:bg-ink-raised px-2 -mx-2"
+                  className="grid grid-cols-12 gap-4 sm:gap-6 items-baseline py-6 sm:py-10 transition-colors hover:bg-ink-raised px-2 -mx-2"
                 >
                   <div className="col-span-2 md:col-span-1 font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
                     {String(i + 1).padStart(2, "0")}
                   </div>
                   <div className="col-span-10 md:col-span-7">
-                    <h2 className="font-display text-2xl md:text-4xl leading-[1.05] tracking-[-0.02em] text-paper">
+                    <h2 className="font-display text-xl sm:text-2xl md:text-4xl leading-[1.05] tracking-[-0.02em] text-paper">
                       {s.title}
                     </h2>
-                    <div className="mt-3 flex flex-wrap items-center gap-x-6 gap-y-2 font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
+                    <div className="mt-3 flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2 font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">
                       <span>{s.client}</span>
                       <span>· {s.year}</span>
                       {tags.slice(0, 3).map((t) => (
@@ -64,7 +64,7 @@ export default async function WorkPage() {
                     </div>
                   </div>
                   <div className="col-span-9 md:col-span-3 self-center">
-                    <div className="font-display text-3xl md:text-4xl text-accent leading-none">
+                    <div className="font-display text-2xl sm:text-3xl md:text-4xl text-accent leading-none">
                       {s.outcomeKey}
                     </div>
                     <div className="mt-2 font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted">

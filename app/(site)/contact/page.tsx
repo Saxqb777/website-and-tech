@@ -10,7 +10,7 @@ export const metadata = {
 export default function ContactPage() {
   return (
     <section className="relative min-h-screen bg-ink">
-      <div className="px-8 pt-40">
+      <div className="px-5 sm:px-8 pt-28 sm:pt-40">
         <SectionHeader
           index="00"
           code="INTAKE"
@@ -25,13 +25,13 @@ export default function ContactPage() {
         </SectionHeader>
       </div>
 
-      <div className="px-8 pt-16 pb-24">
+      <div className="px-5 sm:px-8 pt-10 sm:pt-16 pb-16 sm:pb-24">
         <div className="grid grid-cols-12 gap-8">
           <div className="col-span-12 md:col-span-10 md:col-start-3 mb-16">
             <p className="font-mono text-[10px] tracking-[0.22em] uppercase text-paper-muted mb-6">
               // start here
             </p>
-            <h1 className="font-display text-[clamp(3rem,9vw,8rem)] leading-[0.9] tracking-[-0.035em] text-paper">
+            <h1 className="font-display text-[clamp(2.25rem,9vw,8rem)] leading-[0.9] tracking-[-0.035em] text-paper">
               Tell us where it{" "}
               <span className="italic">
                 hurts<span className="not-italic text-accent">.</span>

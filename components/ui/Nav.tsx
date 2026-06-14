@@ -17,6 +17,14 @@ export function Nav() {
     setCondensed(v > 24);
   });
 
+  // The contact link is rendered as a distinct accent pill so it
+  // always reads as the primary action. Other links stay as text.
+  const ctaHref = siteConfig.cta.primary.href;
+  const navItems = siteConfig.nav.filter((item) => item.href !== ctaHref);
+  const contactItem =
+    siteConfig.nav.find((item) => item.href === ctaHref) ??
+    siteConfig.cta.primary;
+
   return (
     <motion.header
       initial={false}
@@ -35,7 +43,7 @@ export function Nav() {
         </Magnetic>
 
         <nav className="flex items-center gap-0 sm:gap-2">
-          {siteConfig.nav.map((item) => {
+          {navItems.map((item) => {
             const active = pathname === item.href;
             return (
               <Magnetic key={item.href} strength={0.3}>
@@ -56,6 +64,23 @@ export function Nav() {
               </Magnetic>
             );
           })}
+
+          {/* CONTACT — rendered as an accent pill, not a text link */}
+          <Magnetic strength={0.35} className="ml-1 sm:ml-3">
+            <Link
+              href={ctaHref}
+              data-cursor="hover"
+              className="group inline-flex items-center gap-2 rounded-full bg-accent text-ink px-3.5 sm:px-4 py-1.5 sm:py-2 font-mono text-[10px] sm:text-[11px] tracking-[0.18em] sm:tracking-[0.22em] uppercase font-semibold hover:bg-paper transition-colors"
+            >
+              <span>{contactItem.label}</span>
+              <span
+                aria-hidden
+                className="text-[10px] sm:text-[11px] group-hover:translate-x-0.5 transition-transform"
+              >
+                ↗
+              </span>
+            </Link>
+          </Magnetic>
         </nav>
       </div>
     </motion.header>

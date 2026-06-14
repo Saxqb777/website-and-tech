@@ -4,6 +4,7 @@ import { Footer } from "@/components/ui/Footer";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { Cursor } from "@/components/ui/Cursor";
 import { RouteTransition } from "@/components/motion/RouteTransition";
+import { FloatingCta } from "@/components/ui/FloatingCta";
 
 export default function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -23,6 +24,7 @@ export default function SiteLayout({ children }: { children: ReactNode }) {
         <RouteTransition>{children}</RouteTransition>
       </main>
       <Footer />
+      <FloatingCta />
     </>
   );
 }

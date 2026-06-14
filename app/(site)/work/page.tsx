@@ -9,6 +9,9 @@ export const metadata = {
     "Every build, with the metric that mattered. Pulled live from the studio database.",
 };
 
+// Render on demand — case studies are DB-backed.
+export const dynamic = "force-dynamic";
+
 export default async function WorkPage() {
   const studies = await listPublishedCaseStudies();
 

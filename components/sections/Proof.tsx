@@ -56,7 +56,7 @@ export async function Proof() {
                       {s.title}
                     </h3>
 
-                    <p className="mt-6 max-w-xl font-display text-base text-paper-muted leading-relaxed">
+                    <p className="mt-6 max-w-xl font-display text-base prose-body leading-relaxed">
                       {s.summary}
                     </p>
 

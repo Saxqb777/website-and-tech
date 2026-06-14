@@ -37,7 +37,7 @@ export default function ContactPage() {
                 hurts<span className="not-italic text-accent">.</span>
               </span>
             </h1>
-            <p className="mt-8 max-w-xl font-display text-lg text-paper-muted leading-relaxed">
+            <p className="mt-8 max-w-xl font-display text-lg prose-body leading-relaxed">
               Two sentences is plenty. The bottleneck, the cost, who feels it.
               We&rsquo;ll write back inside a working day with whether software
               is the right answer.

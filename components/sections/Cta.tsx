@@ -37,7 +37,7 @@ export function Cta() {
           </RevealOnScroll>
 
           <RevealOnScroll delay={0.15}>
-            <p className="mt-10 max-w-xl font-display text-lg text-paper-muted leading-relaxed">
+            <p className="mt-10 max-w-xl font-display text-lg prose-body leading-relaxed">
               Twenty minutes, free, no deck. You describe what&rsquo;s slow,
               what&rsquo;s broken, what&rsquo;s held together with tape. We
               tell you whether software is the right answer — and if so, what

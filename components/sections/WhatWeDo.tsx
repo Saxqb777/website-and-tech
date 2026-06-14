@@ -141,7 +141,7 @@ function StagePanel({ stage }: { stage: Stage }) {
               </span>
             ) : null}
           </h3>
-          <p className="mt-10 max-w-xl font-display text-lg text-paper-muted leading-relaxed">
+          <p className="mt-10 max-w-xl font-display text-lg prose-body leading-relaxed">
             {stage.body}
           </p>
           <div className="mt-12 flex items-end gap-8 border-t border-dashed border-rule pt-6">

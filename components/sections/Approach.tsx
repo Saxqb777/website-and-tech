@@ -53,7 +53,7 @@ export function Approach() {
                 <h3 className="font-display text-2xl md:text-3xl leading-[1.1] tracking-[-0.02em] text-paper">
                   {p.title}
                 </h3>
-                <p className="mt-5 font-display text-base text-paper-muted leading-relaxed">
+                <p className="mt-5 font-display text-base prose-body leading-relaxed">
                   {p.body}
                 </p>
               </div>

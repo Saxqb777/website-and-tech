@@ -208,7 +208,7 @@ function SubmittedState() {
             <span className="not-italic text-accent">.</span>
           </span>
         </h2>
-        <p className="mt-10 max-w-xl font-display text-lg text-paper-muted leading-relaxed">
+        <p className="mt-10 max-w-xl font-display text-lg prose-body leading-relaxed">
           Reply lands from a real person. If your bottleneck doesn&rsquo;t fit
           our shop, we&rsquo;ll say so and point you somewhere better.
         </p>

@@ -49,7 +49,7 @@ export default async function CaseStudyPage({ params }: Props) {
             <h1 className="font-display text-[clamp(2.5rem,7vw,6.5rem)] leading-[0.95] tracking-[-0.03em] text-paper">
               {s.title}
             </h1>
-            <p className="mt-10 max-w-2xl font-display text-xl text-paper-muted leading-relaxed">
+            <p className="mt-10 max-w-2xl font-display text-xl prose-body leading-relaxed">
               {s.summary}
             </p>
           </div>

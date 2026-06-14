@@ -90,7 +90,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.05 }}
-            className="mt-12 max-w-xl font-display text-xl text-paper-muted leading-relaxed"
+            className="mt-12 max-w-xl font-display text-xl prose-body leading-relaxed"
           >
             {siteConfig.description}
           </motion.p>

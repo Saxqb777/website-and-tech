@@ -23,7 +23,7 @@ export default async function AdminLoginPage() {
           <LoginForm />
         ) : (
           <>
-            <p className="mt-6 max-w-md font-display text-base text-paper-muted leading-relaxed">
+            <p className="mt-6 max-w-md font-display text-base prose-body leading-relaxed">
               No password configured yet. Choose one now — it&rsquo;s hashed
               with bcrypt and stored in your local database. You&rsquo;ll be
               logged in straight away.

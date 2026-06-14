@@ -22,7 +22,7 @@ export default async function NewCaseStudyPage() {
         New case study
         <span className="text-accent">.</span>
       </h1>
-      <p className="mt-4 max-w-xl font-display text-base text-paper-muted leading-relaxed">
+      <p className="mt-4 max-w-xl font-display text-base prose-body leading-relaxed">
         These fields appear in /work, on the home page proof grid, and on the
         case study&rsquo;s own page at /work/[slug].
       </p>

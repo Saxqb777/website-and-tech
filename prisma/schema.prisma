@@ -27,6 +27,15 @@ model CaseStudy {
   updatedAt   DateTime @updatedAt
 }
 
+// Single-row key/value store for admin auth: the bcrypt password
+// hash and the HMAC secret for signing session cookies. Bootstrap
+// happens in-app on first /admin/login visit.
+model Setting {
+  key       String   @id
+  value     String
+  updatedAt DateTime @updatedAt
+}
+
 // Lead submissions from /contact (wiring lands in Phase 4).
 model Lead {
   id        String   @id @default(cuid())

@@ -1,35 +1,53 @@
 import { cookies } from "next/headers";
 import crypto from "node:crypto";
 import bcrypt from "bcryptjs";
+import { db } from "./db";
 
 const COOKIE = "oblique_admin";
 const MAX_AGE_SECONDS = 60 * 60 * 8; // 8 hours
+const KEY_HASH = "admin_password_hash";
+const KEY_SECRET = "auth_secret";
 
-function getSecret(): string {
-  const s = process.env.AUTH_SECRET;
-  if (!s || s.length < 16) {
-    throw new Error(
-      "AUTH_SECRET missing or too short. Run `npm run admin:set-password`.",
-    );
+// In-process cache so we don't hit the DB on every cookie verify.
+// Cleared automatically when the module reloads in dev.
+let secretCache: string | null = null;
+
+async function getSetting(key: string): Promise<string | null> {
+  const row = await db.setting.findUnique({ where: { key } });
+  return row?.value ?? null;
+}
+
+async function setSetting(key: string, value: string): Promise<void> {
+  await db.setting.upsert({
+    where: { key },
+    update: { value },
+    create: { key, value },
+  });
+}
+
+async function getOrCreateSecret(): Promise<string> {
+  if (secretCache) return secretCache;
+  let s = await getSetting(KEY_SECRET);
+  if (!s) {
+    s = crypto.randomBytes(48).toString("hex");
+    await setSetting(KEY_SECRET, s);
   }
+  secretCache = s;
   return s;
 }
 
-function sign(payload: string): string {
-  const h = crypto
-    .createHmac("sha256", getSecret())
-    .update(payload)
-    .digest("hex");
+function sign(payload: string, secret: string): string {
+  const h = crypto.createHmac("sha256", secret).update(payload).digest("hex");
   return `${payload}.${h}`;
 }
 
-function verify(token: string): boolean {
+function verify(token: string, secret: string): boolean {
   const dot = token.lastIndexOf(".");
   if (dot < 0) return false;
   const payload = token.slice(0, dot);
   const sig = token.slice(dot + 1);
   const expected = crypto
-    .createHmac("sha256", getSecret())
+    .createHmac("sha256", secret)
     .update(payload)
     .digest("hex");
   if (
@@ -48,22 +66,15 @@ function verify(token: string): boolean {
   }
 }
 
-export async function loginWithPassword(password: string): Promise<boolean> {
-  const hash = process.env.ADMIN_PASSWORD_HASH;
-  if (!hash) {
-    throw new Error(
-      "ADMIN_PASSWORD_HASH not set. Run `npm run admin:set-password`.",
-    );
-  }
-  const ok = await bcrypt.compare(password, hash);
-  if (!ok) return false;
+async function issueSession(): Promise<void> {
+  const secret = await getOrCreateSecret();
   const payload = Buffer.from(
     JSON.stringify({
       sub: "admin",
       exp: Math.floor(Date.now() / 1000) + MAX_AGE_SECONDS,
     }),
   ).toString("base64url");
-  const token = sign(payload);
+  const token = sign(payload, secret);
   (await cookies()).set(COOKIE, token, {
     httpOnly: true,
     sameSite: "lax",
@@ -71,7 +82,45 @@ export async function loginWithPassword(password: string): Promise<boolean> {
     path: "/",
     maxAge: MAX_AGE_SECONDS,
   });
-  return true;
+}
+
+/** True only when an admin password hash exists in the DB. */
+export async function isPasswordConfigured(): Promise<boolean> {
+  return !!(await getSetting(KEY_HASH));
+}
+
+/**
+ * First-time setup. Stores the bcrypt hash and immediately issues
+ * a session for the caller. No-ops if a password is already set.
+ */
+export async function setPasswordAndLogin(password: string): Promise<{
+  ok: boolean;
+  error?: string;
+}> {
+  if (password.length < 10) {
+    return { ok: false, error: "Password must be at least 10 characters." };
+  }
+  if (await isPasswordConfigured()) {
+    return { ok: false, error: "Password is already set." };
+  }
+  const hash = await bcrypt.hash(password, 12);
+  await setSetting(KEY_HASH, hash);
+  await issueSession();
+  return { ok: true };
+}
+
+export async function loginWithPassword(password: string): Promise<{
+  ok: boolean;
+  error?: string;
+}> {
+  const hash = await getSetting(KEY_HASH);
+  if (!hash) {
+    return { ok: false, error: "Password not set yet." };
+  }
+  const ok = await bcrypt.compare(password, hash);
+  if (!ok) return { ok: false, error: "Wrong password" };
+  await issueSession();
+  return { ok: true };
 }
 
 export async function logout(): Promise<void> {
@@ -83,7 +132,8 @@ export async function isAdmin(): Promise<boolean> {
   const t = c.get(COOKIE)?.value;
   if (!t) return false;
   try {
-    return verify(t);
+    const secret = await getOrCreateSecret();
+    return verify(t, secret);
   } catch {
     return false;
   }

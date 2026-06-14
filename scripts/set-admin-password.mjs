@@ -81,7 +81,9 @@ function askHidden(question) {
 function upsertEnvVar(content, key, value) {
   const line = `${key}='${value}'`;
   if (new RegExp(`^${key}=`, "m").test(content)) {
-    return content.replace(new RegExp(`^${key}=.*$`, "m"), line);
+    // Use a function callback so $ characters in `value` (bcrypt hashes
+    // contain them: $2a$12$...) aren't interpreted as regex back-references.
+    return content.replace(new RegExp(`^${key}=.*$`, "m"), () => line);
   }
   return content.trimEnd() + "\n" + line + "\n";
 }
